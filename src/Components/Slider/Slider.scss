@@ -1,0 +1,47 @@
+.modal-rgb {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 20px;
+
+  &__text {
+    margin: 0;
+  }
+  
+  &__line-container {
+    width: 250px;
+    height: 24px;
+  }
+  
+  &__line {
+    width: 250px;
+    height: 24px;
+    padding-top: 5px;
+  }
+}
+
+.rc-slider-track {
+  background-color: transparent;
+}
+
+.rc-slider-handle {
+  border: solid 2px #fcfcfc;
+  background-color: rgb(124, 124, 124);
+}
+
+.red-slider {
+  .rc-slider-rail {
+    background: linear-gradient(326deg, rgba(74,74,74,1) 0%, rgba(255,0,0,1) 100%);
+  }
+}
+
+.green-slider {
+  .rc-slider-rail {
+    background: linear-gradient(326deg, rgba(74,74,74,1) 0%, rgba(0,255,0,1) 100%);
+  }
+}
+
+.blue-slider {
+  .rc-slider-rail {
+    background: linear-gradient(326deg, rgba(74,74,74,1) 0%, rgba(0,0,255,1) 100%);
+  }
+}

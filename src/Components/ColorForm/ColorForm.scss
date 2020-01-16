@@ -64,12 +64,12 @@
 
 .modal-container {
   z-index: 999;
-  justify-content: center;
+  display: flex;
+  justify-content: flex-end;
   top: 240px !important;
   max-width: 300px;
   margin: 240px auto;
   min-height: 100px !important;
-  padding-left: 100px;
 
   &:focus {
     outline: none;
@@ -107,6 +107,8 @@
 .modal-list-color {
   @extend .modal-list;
 
+  width: 200px;
+
   &:before {
     right: 10px;
   }
@@ -128,6 +130,7 @@
 
 .modal-list-rgb {
   @extend .modal-list;
+  width: 300px;
 
   &:before {
     right: 48px;
@@ -135,7 +138,40 @@
 
   &__container {
     height: 100%;
-    max-width: 200px;
     right: 0;
+    padding: 10px;
+  }
+
+  &__container-colors { 
+    padding-top: 10px;
+  }
+
+  &__container-buttons {
+    justify-content: flex-end;
+    display: flex;
+  }
+
+  .btn-example {
+    border: none;
+    margin-right: 5px;
+    font-size: 12px;
+    height: 25px;
+    padding: 0 10px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__btn-cancel {
+    @extend .btn-example;
+    background-color: lightgrey;
+  }
+
+  &__btn-ok {
+    @extend .btn-example;
+    background-color: green;
+    color: white;
   }
 }
+

@@ -1,29 +1,32 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import SliderComponent from '../Slider/SliderComponent';
+
 import Modal from 'react-modal';
-import './ColorForm.scss';
 import { DataColors } from '../../Data/';
+
+import './ColorForm.scss';
 
 function ColorForm() {
   const [showMobile, setShowMobile] = useState(false);
-  const [selectColor, setSelectColor] = useState(false);
   const [variantModal, setVariantModal] = useState();
   const [color, setColor] = useState('#A9A9A9');
   const [textColor, setTextColor] = useState('#A9A9A9');
+  const [id, setId] = useState();
 
   function handleOpenModal(typeButton) {
     setShowMobile(true);
     setVariantModal(typeButton);
   }
 
-  function onClickColorContainer(color) {
+  function onClickColorContainer(color, id) {
     setColor(color);
     setTextColor(color);
-    setSelectColor(true);
+    setId(id);
   }
 
   function handleCloseModal() {
     setShowMobile(false);
-    setSelectColor(false);
+    setId();
   }
 
   return(
@@ -47,19 +50,20 @@ function ColorForm() {
       >
         <div className={`modal-list-${variantModal}`}>
           {variantModal === 'color' ?
-            DataColors.colors.map((color) => {
+            DataColors.colors.map((colorItem) => {
               return (
                 <div 
                   type="button"
                   className="modal-list-color__container"
-                  key={color.id} onClick={() => onClickColorContainer(color.color)}
-                  style={{ backgroundColor: `${selectColor && 'blue'}`}}
+                  key={colorItem.id}
+                  onClick={() => onClickColorContainer(colorItem.color, colorItem.id)}
+                  style={{ backgroundColor: `${id === colorItem.id && '#79b4ec99'}`}}
                 >
-                  <div className="modal-list-color__name">{color.value}</div>
-                  <div className="modal-list-color__color">
+                  <div>{colorItem.value}</div>
+                  <div>
                     <div
                       className="color-form__btn-in"
-                      style={{ backgroundColor: `${color.color}`}}
+                      style={{ backgroundColor: `${colorItem.color}`}}
                       onClick={() => setShowMobile(false)}
                     ></div>
                   </div>
@@ -67,7 +71,23 @@ function ColorForm() {
               )
             })              
             :
-            <div className="modal-list-color__container"></div>
+            <div className="modal-list-rgb__container">
+              <div className="modal-list-rgb__container-colors">
+                <SliderComponent
+                  type={'red'}
+                />
+                <SliderComponent
+                  type={'green'}
+                />
+                <SliderComponent
+                  type={'blue'}
+                />
+              </div>
+              <div className="modal-list-rgb__container-buttons">
+                <button className="modal-list-rgb__btn-cancel">CANCEL</button>
+                <button className="modal-list-rgb__btn-ok">OK</button>
+              </div>
+            </div>
           }
         </div>  
       </Modal>
