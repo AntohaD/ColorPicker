@@ -23,9 +23,8 @@
   }
 
   &__container-dropdown {
-    position: absolute;
-    display: inline-block;
-    right: 0;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .btn {
@@ -61,6 +60,11 @@
     height: 15px;
     margin-left: 5px;
   }
+
+  &__color-name {
+    font-weight: 500 !important;
+    color: grey;
+  }
 }
 
 .modal-container {
@@ -71,6 +75,10 @@
   max-width: 300px;
   margin: 240px auto;
   min-height: 100px !important;
+
+  @media (max-width: 575px) {
+    margin: 210px auto;
+  }
 
   &:focus {
     outline: none;

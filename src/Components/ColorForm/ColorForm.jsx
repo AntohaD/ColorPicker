@@ -82,7 +82,7 @@ function ColorForm(props) {
                   onClick={() => onClickColorContainer(colorItem.color, colorItem.id)}
                   style={{ backgroundColor: `${id === colorItem.id ? '#79b4ec99' : ''}`}}
                 >
-                  <div>{colorItem.value}</div>
+                  <div className="color-form__color-name">{colorItem.value}</div>
                   <div>
                     <div
                       className="color-form__btn-in"

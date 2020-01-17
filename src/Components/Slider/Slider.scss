@@ -30,26 +30,26 @@
     font-size: 12px;
     height: 25px;
     padding: 0 10px;
+    font-weight: 500;
 
     &:focus {
       outline: none;
     }
-    
   }
 
   &__btn-ok {
-    background-color: green;
+    background-color: #47ad47;
     color: white;
     border: none;
     margin-right: 5px;
     font-size: 12px;
     height: 25px;
     padding: 0 10px;
+    font-weight: 500;
 
     &:focus {
       outline: none;
     }
-    
   }
 }
 
