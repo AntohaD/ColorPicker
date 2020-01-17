@@ -1,41 +1,63 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import SliderComponent from '../Slider/SliderComponent';
+import GeneralActions from '../../store/actions/general/actions';
+import ConvertHex from '../../helpers/ConvertHex';
 
 import Modal from 'react-modal';
-import { DataColors } from '../../Data/';
 
 import './ColorForm.scss';
 
-function ColorForm() {
-  const [showMobile, setShowMobile] = useState(false);
+function ColorForm(props) {
+  const dispatch = useDispatch();
+  const state = useSelector(
+    state => ({general: state.general}),
+  );
+
+  const colors = props.colors;
+  const valueColor = props.value;
+
+  const isModalOpen = state.general.isModalOpen;
   const [variantModal, setVariantModal] = useState();
-  const [color, setColor] = useState('#A9A9A9');
-  const [textColor, setTextColor] = useState('#A9A9A9');
   const [id, setId] = useState();
+  const [color, setColor] = useState(valueColor);
+  const [temporaryColor, setTemporaryColor] = useState(state.general.temporaryColor);
 
   function handleOpenModal(typeButton) {
-    setShowMobile(true);
     setVariantModal(typeButton);
+    dispatch(GeneralActions.openModal());
   }
 
   function onClickColorContainer(color, id) {
+    setTemporaryColor(color);
     setColor(color);
-    setTextColor(color);
     setId(id);
   }
 
   function handleCloseModal() {
-    setShowMobile(false);
     setId();
+    dispatch(GeneralActions.closeModal());
   }
+
+  function clickColor(color) {
+    dispatch(GeneralActions.setManualColor(color));
+    const rgb = (ConvertHex.convertToRGB(color));
+    dispatch(GeneralActions.setColorRgb(rgb));
+    handleCloseModal();
+  }
+
+  useEffect(() => {
+    setColor(state.general.color);
+    setTemporaryColor(state.general.temporaryColor);
+  },[state.general.color, state.general.temporaryColor])
 
   return(
     <div className="color-form">
       <div className="color-form__container">
-        <div className="color-form__container-text">{textColor}</div>
+        <div className="color-form__container-text">{color}</div>
         <div className="color-form__container-dropdown">
           <button className="color-form__btn-color" onClick={() => handleOpenModal('rgb')}>
-            <div className="color-form__btn-in" style={{ backgroundColor: `${color}`}}></div>
+            <div className="color-form__btn-in" style={{ backgroundColor: `${color === (temporaryColor === '' ? color : temporaryColor ) ? color : temporaryColor}`}}></div>
           </button>
           <button className="color-form__btn-rgb" onClick={() => handleOpenModal('color')}>
             <div className="color-form__arrow"></div>
@@ -43,51 +65,37 @@ function ColorForm() {
         </div>
       </div>
       <Modal 
-        isOpen={showMobile}
+        isOpen={isModalOpen}
         className={`modal-container`}
         appElement={document.getElementById('root')}
         onRequestClose={handleCloseModal}
       >
         <div className={`modal-list-${variantModal}`}>
           {variantModal === 'color' ?
-            DataColors.colors.map((colorItem) => {
+            colors.map((colorItem) => {
               return (
                 <div 
                   type="button"
                   className="modal-list-color__container"
                   key={colorItem.id}
                   onClick={() => onClickColorContainer(colorItem.color, colorItem.id)}
-                  style={{ backgroundColor: `${id === colorItem.id && '#79b4ec99'}`}}
+                  style={{ backgroundColor: `${id === colorItem.id ? '#79b4ec99' : ''}`}}
                 >
                   <div>{colorItem.value}</div>
                   <div>
                     <div
                       className="color-form__btn-in"
                       style={{ backgroundColor: `${colorItem.color}`}}
-                      onClick={() => setShowMobile(false)}
+                      onClick={() => clickColor(colorItem.color)}
                     ></div>
                   </div>
                 </div>
               )
             })              
             :
-            <div className="modal-list-rgb__container">
-              <div className="modal-list-rgb__container-colors">
-                <SliderComponent
-                  type={'red'}
-                />
-                <SliderComponent
-                  type={'green'}
-                />
-                <SliderComponent
-                  type={'blue'}
-                />
-              </div>
-              <div className="modal-list-rgb__container-buttons">
-                <button className="modal-list-rgb__btn-cancel">CANCEL</button>
-                <button className="modal-list-rgb__btn-ok">OK</button>
-              </div>
-            </div>
+            <SliderComponent
+              type={'red'}
+            />
           }
         </div>  
       </Modal>

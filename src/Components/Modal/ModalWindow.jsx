@@ -12,9 +12,6 @@ function ModalWindow(props) {
   const variantModal = props.variantModal;
 
   function onClickColorContainer(color, id) {
-    setColor(color);
-    setTextColor(color);
-    setId(id);
   }
 
   return (
