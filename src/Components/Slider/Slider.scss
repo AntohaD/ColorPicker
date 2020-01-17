@@ -13,9 +13,43 @@
   }
   
   &__line {
-    width: 250px;
+    width: 220px;
     height: 24px;
     padding-top: 5px;
+  }
+
+  &__container-buttons {
+    justify-content: flex-end;
+    display: flex;
+  }
+
+  &__btn-cancel {
+    background-color: lightgrey;
+    border: none;
+    margin-right: 5px;
+    font-size: 12px;
+    height: 25px;
+    padding: 0 10px;
+
+    &:focus {
+      outline: none;
+    }
+    
+  }
+
+  &__btn-ok {
+    background-color: green;
+    color: white;
+    border: none;
+    margin-right: 5px;
+    font-size: 12px;
+    height: 25px;
+    padding: 0 10px;
+
+    &:focus {
+      outline: none;
+    }
+    
   }
 }
 
@@ -30,18 +64,18 @@
 
 .red-slider {
   .rc-slider-rail {
-    background: linear-gradient(326deg, rgba(74,74,74,1) 0%, rgba(255,0,0,1) 100%);
+    background: linear-gradient(326deg, rgba(74,74,74,1) 0%, rgb(250, 191, 191) 100%);
   }
 }
 
 .green-slider {
   .rc-slider-rail {
-    background: linear-gradient(326deg, rgba(74,74,74,1) 0%, rgba(0,255,0,1) 100%);
+    background: linear-gradient(326deg, rgba(74,74,74,1) 0%, rgb(167, 255, 167) 100%);
   }
 }
 
 .blue-slider {
   .rc-slider-rail {
-    background: linear-gradient(326deg, rgba(74,74,74,1) 0%, rgba(0,0,255,1) 100%);
+    background: linear-gradient(326deg, #4a4a4a 0%, #a0c6ff 100%);
   }
 }

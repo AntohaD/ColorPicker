@@ -18,7 +18,8 @@
   &__container-text {
     position: absolute;
     left: 10px;
-    color: black;
+    color: #a09b9b;
+    font-weight: 500;
   }
 
   &__container-dropdown {
@@ -130,7 +131,7 @@
 
 .modal-list-rgb {
   @extend .modal-list;
-  width: 300px;
+  width: 270px;
 
   &:before {
     right: 48px;
@@ -144,34 +145,6 @@
 
   &__container-colors { 
     padding-top: 10px;
-  }
-
-  &__container-buttons {
-    justify-content: flex-end;
-    display: flex;
-  }
-
-  .btn-example {
-    border: none;
-    margin-right: 5px;
-    font-size: 12px;
-    height: 25px;
-    padding: 0 10px;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &__btn-cancel {
-    @extend .btn-example;
-    background-color: lightgrey;
-  }
-
-  &__btn-ok {
-    @extend .btn-example;
-    background-color: green;
-    color: white;
   }
 }
 

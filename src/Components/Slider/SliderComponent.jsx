@@ -14,7 +14,7 @@ function SliderComponent() {
   const state = useSelector(
     state => ({general: state.general}),
   );
-
+  
   const [redValue, setRedValue] = useState(state.general.redColor);
   const [greenValue, setGreenValue] = useState(state.general.greenColor);
   const [blueValue, setBlueValue] = useState(state.general.blueColor);
@@ -87,9 +87,9 @@ function SliderComponent() {
               className={'blue-slider'}/>
           </div>
         </div>
-        <div className="modal-list-rgb__container-buttons">
-          <button className="modal-list-rgb__btn-cancel" onClick={closeModal}>CANCEL</button>
-          <button className="modal-list-rgb__btn-ok" onClick={confirmColor}>OK</button>
+        <div className="modal-rgb__container-buttons">
+          <button className="modal-rgb__btn-cancel" onClick={closeModal}>CANCEL</button>
+          <button className="modal-rgb__btn-ok" onClick={confirmColor}>OK</button>
         </div>
       </div>
     </div>

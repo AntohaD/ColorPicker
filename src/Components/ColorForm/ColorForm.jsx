@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import Modal from 'react-modal';
 import SliderComponent from '../Slider/SliderComponent';
 import GeneralActions from '../../store/actions/general/actions';
 import ConvertHex from '../../helpers/ConvertHex';
-
-import Modal from 'react-modal';
 
 import './ColorForm.scss';
 
@@ -24,6 +23,8 @@ function ColorForm(props) {
   const [temporaryColor, setTemporaryColor] = useState(state.general.temporaryColor);
 
   function handleOpenModal(typeButton) {
+    const rgb = (ConvertHex.convertToRGB(color));
+    dispatch(GeneralActions.setColorRgb(rgb));
     setVariantModal(typeButton);
     dispatch(GeneralActions.openModal());
   }
@@ -94,7 +95,7 @@ function ColorForm(props) {
             })              
             :
             <SliderComponent
-              type={'red'}
+              value={valueColor}
             />
           }
         </div>  
