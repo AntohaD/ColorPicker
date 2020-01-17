@@ -1,5 +1,3 @@
-import React from 'react';
-
 class ConvertHex {
   static convertToHex(red, green, blue) {
 

@@ -31,12 +31,12 @@ function ColorForm(props) {
 
   function onClickColorContainer(color, id) {
     setTemporaryColor(color);
-    setColor(color);
     setId(id);
   }
 
   function handleCloseModal() {
     setId();
+    setTemporaryColor(state.general.temporaryColor);
     dispatch(GeneralActions.closeModal());
   }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import 'rc-slider/assets/index.css';
 import Slider from 'rc-slider';
