@@ -27,6 +27,7 @@ function ColorForm(props) {
     dispatch(GeneralActions.setColorRgb(rgb));
     setVariantModal(typeButton);
     dispatch(GeneralActions.openModal());
+    setTemporaryColor(color);
   }
 
   function onClickColorContainer(color, id) {
