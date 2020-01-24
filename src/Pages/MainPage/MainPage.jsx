@@ -16,6 +16,7 @@ function MainPage() {
         className="link-github"
         href="https://github.com/AntohaD/ColorPicker"
         target="_blank"
+        rel="noreferrer noopener"
       >
         Project on GitHub
       </a>

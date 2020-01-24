@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import SliderComponent from '../Slider/SliderComponent';
 import GeneralActions from '../../store/actions/general/actions';
 import ConvertHex from '../../helpers/ConvertHex';
+import ColorModal from '../ColorModal/ColorModal';
 
 import './ColorForm.scss';
 
@@ -18,7 +19,7 @@ function ColorForm(props) {
 
   const isModalOpen = state.general.isModalOpen;
   const [variantModal, setVariantModal] = useState();
-  const [id, setId] = useState();
+  // const [id, setId] = useState();
   const [color, setColor] = useState(valueColor);
   const [temporaryColor, setTemporaryColor] = useState(state.general.temporaryColor);
 
@@ -30,23 +31,23 @@ function ColorForm(props) {
     setTemporaryColor(color);
   }
 
-  function onClickColorContainer(color, id) {
-    setTemporaryColor(color);
-    setId(id);
-  }
+  // function onClickColorContainer(color, id) {
+  //   setTemporaryColor(color);
+  //   setId(id);
+  // }
 
   function handleCloseModal() {
-    setId();
+    // setId();
     setTemporaryColor(state.general.temporaryColor);
     dispatch(GeneralActions.closeModal());
   }
 
-  function clickColor(color) {
-    dispatch(GeneralActions.setManualColor(color));
-    const rgb = (ConvertHex.convertToRGB(color));
-    dispatch(GeneralActions.setColorRgb(rgb));
-    handleCloseModal();
-  }
+  // function clickColor(color) {
+  //   dispatch(GeneralActions.setManualColor(color));
+  //   const rgb = (ConvertHex.convertToRGB(color));
+  //   dispatch(GeneralActions.setColorRgb(rgb));
+  //   handleCloseModal();
+  // }
 
   useEffect(() => {
     setColor(state.general.color);
@@ -76,22 +77,28 @@ function ColorForm(props) {
           {variantModal === 'color' ?
             colors.map((colorItem) => {
               return (
-                <div 
-                  type="button"
-                  className="modal-list-color__container"
+                <ColorModal 
                   key={colorItem.id}
-                  onClick={() => onClickColorContainer(colorItem.color, colorItem.id)}
-                  style={{ backgroundColor: `${id === colorItem.id ? '#79b4ec99' : ''}`}}
-                >
-                  <div className="color-form__color-name">{colorItem.value}</div>
-                  <div>
-                    <div
-                      className="color-form__btn-in"
-                      style={{ backgroundColor: `${colorItem.color}`}}
-                      onClick={() => clickColor(colorItem.color)}
-                    ></div>
-                  </div>
-                </div>
+                  value={colorItem.value}
+                  id={colorItem.id}
+                  color={colorItem.color}
+                />
+                // <div 
+                //   type="button"
+                //   className="modal-list-color__container"
+                //   key={colorItem.id}
+                //   onClick={() => onClickColorContainer(colorItem.color, colorItem.id)}
+                //   style={{ backgroundColor: `${id === colorItem.id ? '#79b4ec99' : ''}`}}
+                // >
+                //   <div className="color-form__color-name">{colorItem.value}</div>
+                //   <div>
+                //     <div
+                //       className="color-form__btn-in"
+                //       style={{ backgroundColor: `${colorItem.color}`}}
+                //       onClick={() => clickColor(colorItem.color)}
+                //     ></div>
+                //   </div>
+                // </div>
               )
             })              
             :

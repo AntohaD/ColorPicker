@@ -7,6 +7,7 @@ const initialState = {
   isModalOpen: false,
   color: '#A9A9A9',
   temporaryColor: '',
+  id: 0,
 }
 
 const General = (state = initialState, action) => {
@@ -29,7 +30,7 @@ const General = (state = initialState, action) => {
       }
     case ACTION_TYPES.CLOSE_MODAL:
       return {
-        ...state, isModalOpen: false, temporaryColor: state.color,
+        ...state, isModalOpen: false, temporaryColor: state.color, id: 0,
       }
     case ACTION_TYPES.SET_MANUAL_COLOR:
       return {
@@ -42,6 +43,10 @@ const General = (state = initialState, action) => {
     case ACTION_TYPES.SET_TEMPORARY_COLOR:
       return {
         ...state, temporaryColor: action.value,
+      }
+    case ACTION_TYPES.SELECTED_ID:
+      return {
+        ...state, id: action.selectedId,
       }
     default: 
       return state

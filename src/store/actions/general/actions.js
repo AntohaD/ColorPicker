@@ -42,6 +42,15 @@ function setColor(red, green, blue) {
   }
 }
 
+function selectedId(id) {
+  return dispatch => {
+    dispatch({
+      type: types.SELECTED_ID,
+      selectedId: id,
+    })
+  }
+}
+
 function setManualColor(color) {
   return dispatch => {
     dispatch({
@@ -78,4 +87,5 @@ export default {
   setColorRgb,
   setColorHex,
   setTemporaryColor,
+  selectedId,
 };
